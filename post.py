@@ -3,14 +3,14 @@ import json
 import base64
 
 
-def postChartToApi(title, image, tags):
-    url = 'http://activismo.inf.uach.cl:8080/api/chart/'
+def postChartToApi(title, image, tags, authorization_token):
+    url = 'https://activismo.inf.uach.cl/api/charts/upload/'
     payload = {
         "title": title,
         "image": image,
         "tags": tags  # array del tipo ["tag1", "tag2", "tag3"]
     }
-    headers = {'Content-Type': 'application/json'}
+    headers = {'Content-Type': 'application/json', 'authorization': authorization_token}
 
     r = requests.post(url, data=json.dumps(payload), headers=headers)
     print(r.text)
